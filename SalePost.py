@@ -18,12 +18,16 @@ class SalePost(Post):
         if not self.isSold and self.owner.user_password == password:  # Checking if the product is not sold and the password is correct
             self.price -= self.price * percentage / 100  # Calculating the discounted price
             print(f"Discount on {self.owner.user_name}'s product! The new price is: {self.price}")  # Printing a message indicating the discounted price
+            return
+        raise Exception("action not allowed.")
 
     def sold(self, password):
         # Method to mark the product as sold
         if self.owner.user_password == password:  # Checking if the password is correct
             self.isSold = True  # Marking the product as sold
             print(f"{self.owner.user_name}'s product is sold")  # Printing a message indicating that the product is sold
+            return
+        raise Exception("action not allowed.")
 
     def __str__(self):
         # Method to return a string representation of the SalePost object

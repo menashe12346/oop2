@@ -19,16 +19,16 @@ class SocialNetwork:
     def search_for_user(self, username):
         # Method to search for a user by username
         for user in self.users:
-            if username == user:
+            if username == user.user_name:
                 return True  # Return True if user is found
         return False  # Return False if user is not found
 
     def sign_up(self, username, password):
         # Method to sign up a new user
         if self.search_for_user(username):  # Check if the username already exists
-            return None  # Return None if the username already exists
+            raise Exception("action not allowed.")
         if len(password) > 8 or len(password) < 4:  # Checking password length
-            return None  # Return None if password length is invalid
+            raise Exception("action not allowed.")
         new_user = User(username, password)  # Creating a new User object
         new_user.logged_in = True  # Setting the new user's login status to True
         self.users.append(new_user)  # Adding the new user to the list of users
@@ -40,6 +40,8 @@ class SocialNetwork:
             if user.user_name == username and user.user_password == password:  # Checking username and password
                 user.logged_in = True  # Setting the user's login status to True
                 print(f"{username} connected")  # Printing a message indicating the user has connected
+                return
+        raise Exception("action not allowed.")
 
     def log_out(self, username):
         # Method to log out a user
@@ -47,6 +49,8 @@ class SocialNetwork:
             if user.user_name == username:
                 user.logged_in = False  # Setting the user's login status to False
                 print(f"{username} disconnected")  # Printing a message indicating the user has disconnected
+                return
+        raise Exception("action not allowed.")
 
     def __str__(self):
         # Method to return a string representation of the SocialNetwork object

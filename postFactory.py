@@ -15,4 +15,4 @@ class postFactory:
         elif type_of_post == "Sale":  # Checking if the type of post is Sale
             return SalePost(owner, *args)  # Creating and returning a SalePost object
         else:
-            return None  # Returning None if the type of post is unknown or unsupported
+            raise Exception("action not allowed.")

@@ -14,16 +14,16 @@ class Post(ABC):
 
     def like(self, user):
         # Method to like the post
+        self.likes.append(user)  # Adding the user to the list of likes
         if self.owner is not user:  # Checking if the owner is not the user
-            self.likes.append(user)  # Adding the user to the list of likes
             notify = f"{user.user_name} liked your post"  # Creating a notification message
             self.owner.add_notification(notify)  # Adding the notification to the owner's notifications
             self.send_notification(notify)  # Sending the notification
 
     def comment(self, user, text):
         # Method to add a comment to the post
+        self.comments.append(Comment(user, text))  # Creating a new comment and adding it to the post
         if self.owner is not user:  # Checking if the owner is not the user
-            self.comments.append(Comment(user, text))  # Creating a new comment and adding it to the post
             self.owner.add_notification(f"{user.user_name} commented on your post")  # Adding a notification about the comment to the owner's notifications
             self.send_notification(f"{user.user_name} commented on your post: {text}")  # Sending a notification about the comment
 

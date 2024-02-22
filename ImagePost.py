@@ -15,7 +15,9 @@ class ImagePost(Post):
     def display(self):
         # Method to display the image
         image_data = mpimg.imread(self.path)  # Load the image data from the file path
-        plt.imshow(image_data)  # Display the image using imshow()
+        imgplot=plt.imshow(image_data)
+        plt.axis('off')
+        plt.show()  # Display the image using imshow()
         print("Shows picture")  # Printing a message indicating the image is displayed
 
     def __str__(self):
