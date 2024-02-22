@@ -17,7 +17,7 @@ class SalePost(Post):
         # Method to apply a discount to the sale post
         if not self.isSold and self.owner.user_password == password:  # Checking if the product is not sold and the password is correct
             self.price -= self.price * percentage / 100  # Calculating the discounted price
-            print(f"Discount on {self.owner.user_name}'s product! The new price is: {self.price}")  # Printing a message indicating the discounted price
+            print(f"Discount on {self.owner.user_name} product! the new price is: {self.price}")  # Printing a message indicating the discounted price
             return
         raise Exception("action not allowed.")
 
